@@ -1,30 +1,44 @@
 import './style.css'
-import { setupCounter } from './counter.js'
 import TodoItem from './components/toDo.js'
 import Project from './components/project.js'
 
 document.querySelector('#app').innerHTML = `
   <div>
     <h1>Odin Project ToDo w/ Vite</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
+    <div id="project-container"></div>
   </div>
 `
+const projectContainer = document.querySelector("#project-container")
 
-setupCounter(document.querySelector('#counter'))
 
-
-// Example usage:
 const testTodo = new TodoItem("testName", "testDescript", "1990-01-01", "High");
-console.log(testTodo);
+const testProjecta = new Project("projectTitlea", "Projectdescription")
+const testProjectb = new Project("projectTitleb", "Projectdescription")
 
-const testProject = new Project("projectTitle", "Projectdescription")
+
+const Projects = [testProjecta, testProjectb]
+
+Projects.forEach(Project => {
+  const newTitle = document.createElement("div");
+  newTitle.innerText = Project.title;
+  projectContainer.appendChild(newTitle);
+  newTitle.onclick = () => {
+    alert(Project.title);
+};
+});
 
 
-testProject.addTodo(testTodo);
+/*
+TODO:
+break out Projects.foreach loop into its own component
+instead of alert project.title on click just append each todo title on click
+when clicking on project.title again remove the appended children from the dom]
 
-console.log(testProject)
+make function to add project
+make function to add todos
+
+append buttons to the dom to add inputs for the relevent class properties of todo and project
+???
+Profit
+
+*/
