@@ -22,6 +22,9 @@ setupCounter(document.querySelector('#counter'))
 const testTodo = new TodoItem("testName", "testDescript", "1990-01-01", "High");
 console.log(testTodo);
 
-const testProject = new Project("projectTitle", "Projectdescription", testTodo)
+const testProject = new Project("projectTitle", "Projectdescription")
 
-console.table(testProject)
+
+testProject.addTodo(testTodo);
+
+console.log(testProject)
