@@ -11,6 +11,11 @@ document.querySelector('#app').innerHTML = `
 
 const projectContainer = document.querySelector("#project-container")
 
+testProjecta.addTodo("a")
+testProjecta.addTodo("b")
+testProjecta.addTodo("c")
+
+
 displayProject(Projects, projectContainer)
 
 
