@@ -1,6 +1,6 @@
 import './style.css'
-import TodoItem from './components/toDo.js'
-import Project from './components/project.js'
+import displayProject from './components/displayProjects.js'
+import { testTodo, testProjecta, testProjectb, Projects } from './components/Data.js';
 
 document.querySelector('#app').innerHTML = `
   <div>
@@ -8,24 +8,18 @@ document.querySelector('#app').innerHTML = `
     <div id="project-container"></div>
   </div>
 `
+console.log(document.querySelector("#project-container"))
+
 const projectContainer = document.querySelector("#project-container")
 
 
-const testTodo = new TodoItem("testName", "testDescript", "1990-01-01", "High");
-const testProjecta = new Project("projectTitlea", "Projectdescription")
-const testProjectb = new Project("projectTitleb", "Projectdescription")
+
+displayProject(Projects, projectContainer)
 
 
-const Projects = [testProjecta, testProjectb]
 
-Projects.forEach(Project => {
-  const newTitle = document.createElement("div");
-  newTitle.innerText = Project.title;
-  projectContainer.appendChild(newTitle);
-  newTitle.onclick = () => {
-    alert(Project.title);
-};
-});
+
+
 
 
 /*
