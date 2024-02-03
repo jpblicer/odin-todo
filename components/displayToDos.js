@@ -1,11 +1,9 @@
-function displayToDos(Project) {
-        Project.todos.forEach(todo => {
-            console.log(todo)
-        });
-        //const toDoTitle = document.createElement("div");
-       //toDoTitle.innerText = toDoTitle.title;
-        //toDoTitle.addEventListener('click', () => console.log("test"));
-        //toDoContainer.appendChild(toDoTitle);
-    }
+function displayToDos(Project, projectTitle) {
+    Project.todos.forEach(todo => {
+        const todosTitle = document.createElement("div");
+        todosTitle.innerText = todo.title;
+        projectTitle.appendChild(todosTitle);
+    });
+}
 
 export default displayToDos;
