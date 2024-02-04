@@ -5,13 +5,16 @@ import { testProjecta, testProjectb, Projects } from './components/Data.js';
 document.querySelector('#app').innerHTML = `
   <div>
     <h1>Odin Project ToDo w/ Vite</h1>
+    <button id="add-todo">Add ToDo</button>
+    <button>Add Project</button>
     <div id="project-container"></div>
   </div>
 `
 
 const projectContainer = document.querySelector("#project-container")
+const addTodoBtn = document.querySelector("#add-todo")
 
-testProjecta.addTodo()
+addTodoBtn.addEventListener("click", testProjecta.addTodo.bind(testProjecta))
 
 
 
