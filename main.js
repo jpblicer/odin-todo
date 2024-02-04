@@ -1,6 +1,6 @@
 import './style.css'
 import displayProject from './components/displayProjects.js'
-import { testTodo, testProjecta, testProjectb, Projects } from './components/Data.js';
+import { testProjecta, testProjectb, Projects } from './components/Data.js';
 
 document.querySelector('#app').innerHTML = `
   <div>
@@ -11,9 +11,8 @@ document.querySelector('#app').innerHTML = `
 
 const projectContainer = document.querySelector("#project-container")
 
-testProjecta.addTodo("a")
-testProjecta.addTodo("b")
-testProjecta.addTodo("c")
+testProjecta.addTodo()
+
 
 
 displayProject(Projects, projectContainer)
@@ -21,12 +20,18 @@ displayProject(Projects, projectContainer)
 
 /*
 TODO:
-instead of alert project.title on click just append each todo title on click
-when clicking on project.title again remove the appended children from the dom]
+Add empty array to store projects
+Create project function
+  creates new project from the project.js class
+  calls displayProjects after add
 
-make function to add project
-make function to add todos
 
-append buttons to the dom to add inputs for the relevent class properties of todo and project
+Create todo function
+  update the project.js class add todo to prompt user for the necessary properties
+  calls add todo from project.js class
 
+append buttons to the dom to add inputs for 
+  the relevent class properties of todo and project
+
+remove Data.js
 */
