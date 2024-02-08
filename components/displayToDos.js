@@ -27,7 +27,7 @@ let showingToDoDetails = false;
 
 function displayToDoDetails(Project, todosTitle, todo) { 
     if (showingToDoDetails) {
-        while (todosTitle.children.length > 1) {
+        while (todosTitle.children.length >= 1) {
             todosTitle.removeChild(todosTitle.lastChild);
         }
     } else {
