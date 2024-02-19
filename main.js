@@ -17,6 +17,13 @@ const inputTodo = document.getElementById("inputTodo");
 
 addTodoBtn.addEventListener("click", function(){
   let todo = document.createElement("p");
+  let todoRemoveBtn = document.createElement("button");
+  todoRemoveBtn.textContent = "-";
   todo.innerText = inputTodo.value;
+  todo.append(todoRemoveBtn)
   todoContainer.appendChild(todo);
+
+  todoRemoveBtn.addEventListener("click", function(){
+    todo.remove(todo)
+  })
 })
