@@ -16,6 +16,7 @@ document.querySelector('#app').innerHTML = `
   const projectContainer = document.getElementById("projectContainer");
   const inputProject = document.getElementById("inputProject");
 
+
   addProjectBtn.addEventListener("click", function(){
     let project = document.createElement("h1");
     let projectRemoveBtn = document.createElement("button");
@@ -31,11 +32,17 @@ document.querySelector('#app').innerHTML = `
   })
 
 
-
+class todoClass{
+  constructor(todoTitle, todoDescription, todoDue, todoPriority){
+    this.todoTitle = todoTitle;
+    this.todoDescription = todoDescription;
+    this.todoDue = todoDue;
+    this.todoPriority = todoPriority;
+  }
+}
 
 
 function addTodo(project){
-
   const inputTodo = document.createElement("input");
   inputTodo.id = "inputTodo";
   inputTodo.type = "text";
@@ -59,7 +66,21 @@ function addTodo(project){
     let todo = document.createElement("p");
     let todoRemoveBtn = document.createElement("button");
     todoRemoveBtn.textContent = "-";
-    todo.innerText = inputTodo.value;
+    
+    let todoTitle = inputTodo.value;
+    todo.innerText = todoTitle;
+
+    let todoDescription = prompt("description");
+    let todoDue = prompt("due");
+    let todoPriority = prompt("priority")
+
+    let aTodo = new todoClass(todoTitle, todoDescription, todoDue, todoPriority);
+    
+    
+    todo.addEventListener("click", function(){
+      alert(aTodo.todoTitle + " is due on " + aTodo.todoDue + " and has a priority of " + aTodo.todoPriority + " \n\n Description: \n\n" + aTodo.todoDescription)
+    });
+    
     todo.append(todoRemoveBtn)
     todoContainer.appendChild(todo);
 
@@ -68,3 +89,4 @@ function addTodo(project){
     })
   })
 };
+
