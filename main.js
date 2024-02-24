@@ -18,7 +18,7 @@ document.querySelector('#app').innerHTML = `
 
 
   addProjectBtn.addEventListener("click", function(){
-    let project = document.createElement("h1");
+    let project = document.createElement("h2");
     let projectRemoveBtn = document.createElement("button");
     projectRemoveBtn.textContent = "-";
     project.innerText = inputProject.value;
@@ -84,7 +84,8 @@ function addTodo(project){
     todo.append(todoRemoveBtn)
     todoContainer.appendChild(todo);
 
-    todoRemoveBtn.addEventListener("click", function(){
+    todoRemoveBtn.addEventListener("click", function(e){
+      e.stopPropagation()
       todo.remove()
     })
   })
