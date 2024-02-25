@@ -10,26 +10,42 @@ document.querySelector('#app').innerHTML = `
     </div>
   </div>
 `
-  const addProjectBtn = document.getElementById("addProject");
-  const projectContainer = document.getElementById("projectContainer");
-  const inputProject = document.getElementById("inputProject");
+const addProjectBtn = document.getElementById("addProject");
+const projectContainer = document.getElementById("projectContainer");
+const inputProject = document.getElementById("inputProject");
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  const savedProjects = JSON.parse(localStorage.getItem("projects")) || [];
+  savedProjects.forEach(function(projectText) {
+    createProject(projectText);
+  });
+});
 
 
 addProjectBtn.addEventListener("click", function(){
+  const projectText = inputProject.value;
+  createProject(projectText);
+  inputProject.value = "";
+  saveProject(projectText)
+
+});
+
+function createProject(projectText) {
   const project = document.createElement("h2");
   const projectRemoveBtn = document.createElement("button");
   projectRemoveBtn.textContent = "-";
-  project.innerText = inputProject.value;
-  project.append(projectRemoveBtn)
+  project.innerText = projectText;
+  project.appendChild(projectRemoveBtn);
   projectContainer.appendChild(project);
 
   addTodo(project);
 
   projectRemoveBtn.addEventListener("click", function(){
-    project.remove()
+    project.remove();
+    removeProject(projectText);
   });
-});
-
+}
 
 class Todo{
   constructor(todoTitle, todoDescription, todoDue, todoPriority){
@@ -81,10 +97,44 @@ function addTodo(project){
     todo.appendChild(todoRemoveBtn)
     todoContainer.appendChild(todo);
 
+    saveTodo(newTodo, project.innerText);
+
+
     todoRemoveBtn.addEventListener("click", function(e){
       e.stopPropagation()
       todo.remove()
-    })
-  })
+      removeTodo(newTodo, project.innerText);
+    });
+
+  });
 };
 
+function saveProject(projectText){
+  let projects = JSON.parse(localStorage.getItem("projects")) || [];
+  projects.push(projectText);
+  localStorage.setItem("projects", JSON.stringify(projects));
+}
+
+function removeProject(projectText){
+  let projects = JSON.parse(localStorage.getItem("projects")) || [];
+  let index = projects.indexOf(projectText);
+  if(index != -1){
+    projects.splice(index, 1);
+    localStorage.setItem("projects", JSON.stringify(projects));
+  }
+}
+
+function saveTodo(todo, projectName){
+  let todos = JSON.parse(localStorage.getItem("todos")) || {};
+  todos[projectName] = todos[projectName] || [];
+  todos[projectName].push(todo);
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+function removeTodo(todo, projectName){
+  let todos = JSON.parse(localStorage.getItem("todos")) || {};
+  if (todos[projectName]) {
+    todos[projectName] = todos[projectName].filter(i => i.todoTitle !== todo.todoTitle);
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }
+}
